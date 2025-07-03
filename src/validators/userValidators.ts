@@ -53,6 +53,35 @@ export class UserValidators {
     ];
   }
 
+  updateUser() {
+    return [
+      body("name")
+        .optional()
+        .trim()
+        .isString()
+        .withMessage("The name must be a text string.")
+        .isLength({ min: 3, max: 50 }),
+
+      body("username")
+        .optional()
+        .trim()
+        .isAlphanumeric()
+        .withMessage("Username must contain only letters and numbers")
+        .isLength({ min: 3, max: 20 })
+        .withMessage("Username must be between 3 and 20 characters long"),
+
+      body("interests")
+        .optional()
+        .isArray()
+        .withMessage("Interests must be an array"),
+
+      body("profileimage")
+        .optional()
+        .isURL()
+        .withMessage("Profile image must be a valid URL"),
+    ];
+  }
+
   loginValid() {
     return [
       body("email")

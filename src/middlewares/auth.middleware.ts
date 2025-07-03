@@ -4,7 +4,7 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
-interface AutenticationRequest extends Request {
+export interface  AutenticationRequest extends Request {
   user?: {
     id: number;
     name: string;
@@ -28,7 +28,7 @@ export function authMiddleware(req: AutenticationRequest, res: Response, next: N
 
     req.user = decoded;
     next();
-    
+
   } catch {
     return res.status(500).json({ ok: false, message: "Invalid token" });
   }

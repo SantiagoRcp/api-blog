@@ -3,8 +3,9 @@ import cors from "cors";
 import morgan from "morgan";
 import dotenv from "dotenv";
 import authRoutes from "./routes/auth.routes";
-  // import User from "./models/user.model";
-  // import PasswordResetCode from "./models/PasswordResetCodes.model";
+import userRoutes from "./routes/user.routes";
+// import User from "./models/user.model";
+// import PasswordResetCode from "./models/PasswordResetCodes.model";
 
 dotenv.config();
 const app = express();
@@ -25,9 +26,7 @@ app.use(morgan("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.get("/", (req, res) => {
-  res.send("Welcome to the api blog");
-});
 app.use("/api/v1", authRoutes);
+app.use("/api/v1", userRoutes);
 
 export default app;
