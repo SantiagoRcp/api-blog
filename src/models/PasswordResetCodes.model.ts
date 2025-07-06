@@ -36,7 +36,7 @@ PasswordResetCode.init(
     },
 
     user_id: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.INTEGER.UNSIGNED,
       allowNull: false,
     },
 

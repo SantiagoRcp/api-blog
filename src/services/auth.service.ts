@@ -3,7 +3,7 @@ import { IAuthService, IAuthServices } from "../interfaces/IAuthService";
 
 export class AuthServices implements IAuthService {
   async registerUser(dataUser: IAuthServices): Promise<User> {
-    const { username, email, password } = dataUser;
+    const { username, email } = dataUser;
 
     const existingEmail = await User.findOne({ where: { email } });
     if (existingEmail) throw new Error("User already exists with this email");

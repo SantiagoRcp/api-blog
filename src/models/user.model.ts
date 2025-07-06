@@ -7,7 +7,8 @@ type UserCreationAttributes = Optional<
   "id" | "profileimage" | "interests"
 >;
 
-class User extends Model<UserAttributes, UserCreationAttributes>
+class User
+  extends Model<UserAttributes, UserCreationAttributes>
   implements UserAttributes
 {
   public id!: number;
@@ -29,7 +30,11 @@ class User extends Model<UserAttributes, UserCreationAttributes>
 // Initialize the User model
 User.init(
   {
-    id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+    id: {
+      type: DataTypes.INTEGER.UNSIGNED,
+      primaryKey: true,
+      autoIncrement: true,
+    },
     name: { type: DataTypes.STRING, allowNull: false },
     username: { type: DataTypes.STRING, allowNull: false, unique: true },
 
