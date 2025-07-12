@@ -15,7 +15,7 @@ router.get("/post/", post.getPublicPosts.bind(post));
 // @ts-ignore
 router.get("/post/:idPost", post.getPostById.bind(post));
 // @ts-ignore
-router.post( "/post/", authMiddleware, authorization(["Author", "Admin"]), postValid.post(), validate, post.newPost.bind(post));
+router.post( "/post/", authMiddleware, authorization(["User", "Author", "Admin"]), postValid.post(), validate, post.newPost.bind(post));
 // @ts-ignore
 router.patch("/post/:idPost",authMiddleware,authorization(["Author", "Admin"]),postValid.update(), validate, post.updatePost.bind(post));
 // @ts-ignore

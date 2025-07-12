@@ -1,5 +1,4 @@
-import { DataType, DataTypes, Model, Optional } from "sequelize";
-import User from "./user.model";
+import { DataTypes, Model, Optional } from "sequelize";
 import { PostAttributes } from "../interfaces/IPostAttributes";
 import sequelize from "../config/db";
 
@@ -17,8 +16,11 @@ class Post
   public content!: string;
   public status!: string;
   public author_id!: number;
+  public category_id!: number;
   public readonly createdAt!: Date;
   public readonly updatedAt!: Date;
+
+  public setTags!: (tagIds: number[] | number) => Promise<void>;
 }
 
 Post.init(
@@ -40,6 +42,10 @@ Post.init(
 
     author_id: { type: DataTypes.INTEGER.UNSIGNED, allowNull: false },
 
+    category_id: {type: DataTypes.INTEGER.UNSIGNED, 
+      allowNull: false
+    },
+
     createdAt: {
       type: DataTypes.DATE,
       allowNull: false,
@@ -58,8 +64,5 @@ Post.init(
     modelName: "Post",
   }
 );
-
-Post.belongsTo(User, { foreignKey: "author_id", as: "author" });
-User.hasMany(Post, { foreignKey: "author_id", as: "posts" });
 
 export default Post;

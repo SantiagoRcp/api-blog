@@ -26,6 +26,17 @@ export class PostValidation {
         .optional()
         .isIn(["draft", "published"])
         .withMessage("The status must be 'draft' or 'published'"),
+
+      body("tag_ids")
+        .trim()
+        .optional()
+        .isArray()
+        .withMessage("tag_ids must be a non-empty array"),
+
+      body("tag_ids.*")
+        .optional()
+        .isInt({ min: 1 })
+        .withMessage("Each tag_id must be a valid integer"),
     ];
   }
 
