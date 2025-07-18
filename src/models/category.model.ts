@@ -1,7 +1,6 @@
 import { DataTypes, Model, Optional } from "sequelize";
 import { ICategotyAttributes } from "../interfaces/ICategoryAttributes";
 import sequelize from "../config/db";
-import { flushCompileCache } from "module";
 
 type CreationAttributes = Optional<
   ICategotyAttributes,
