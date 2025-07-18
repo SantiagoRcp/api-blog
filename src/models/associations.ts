@@ -3,6 +3,7 @@ import User from "./user.model";
 import Category from "./category.model";
 import Tag from "./tag.model";
 import Comment from "./comment.model";
+import Reactions from "./reactions.model ";
 
 // Post - User
 Post.belongsTo(User, { foreignKey: "author_id", as: "author" });
@@ -22,3 +23,9 @@ Comment.belongsTo(Post, { foreignKey: 'post_id' });
 
 User.hasMany(Comment, { foreignKey: 'author_id', as: 'author' });
 Post.hasMany(Comment, { foreignKey: 'post_id', as: 'comments' });
+
+// Reactions
+User.hasMany(Reactions,{foreignKey: "user_id", as: "reactions"});
+Post.hasMany(Reactions, {foreignKey: "post_id", as: "reactions"});
+Reactions.belongsTo(User, {foreignKey: "user_id", as: "user"});
+Reactions.belongsTo(Post, {foreignKey: "post_id", as: "post"});
